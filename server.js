@@ -1,4 +1,6 @@
 const express = require('express')
+const db = require('./database')
+
 const app = express()
 const port = 50000
 
@@ -7,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/hello', (req, res) => {
-  res.send('You are a stinky butt')
+  res.send(db.testDatabase())
 })
 
 app.listen(port, '0.0.0.0', () => {
