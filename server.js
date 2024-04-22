@@ -8,8 +8,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/hello', (req, res) => {
+app.get('/test', (req, res) => {
   res.send(db.testDatabase())
+})
+
+app.get('/hello', (req, res) => {
+  res.send('hello')
 })
 
 app.listen(port, '0.0.0.0', () => {

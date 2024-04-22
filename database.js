@@ -12,6 +12,7 @@ function testDatabase(){
     .then(conn => {
         conn.query("SELECT 1 as val")
         .then((rows) => {
+            console.log("hello")
             return rows
         })
     })
