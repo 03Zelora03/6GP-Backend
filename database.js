@@ -20,7 +20,7 @@ async function testDatabase(){
     } catch (err) {
         throw err;
     } finally {
-        if (conn) return conn.end();
+        if (conn) conn.end();
     }
 }
 
