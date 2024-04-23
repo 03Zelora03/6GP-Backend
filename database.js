@@ -4,7 +4,8 @@ const pool = mariadb.createPool({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    connectionLimit: 5
+    connectionLimit: 5,
+    database: "videoDB"
 });
 
 async function testDatabase(){
@@ -41,5 +42,5 @@ async function getAllObjects(){
 module.exports = {
     testDatabase,
     getAllObjects,
-    
+
 }
