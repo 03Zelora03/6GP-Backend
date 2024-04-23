@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb){
     const parts = file.mimetype.split('/')
-    cb(null, `${file.fieldname}-${Date.now()}.${parts[1]}`)
+    cb(null, `${file.filename}-${file.fieldname}-${Date.now()}.${parts[1]}`)
   }
 })
 const upload = multer({storage})
@@ -37,8 +37,7 @@ app.get('/modifyobject', async (req, res) => {
 
 app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   console.log('incoming request')
-  console.log(req.url)
-  res.send()
+  res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente.")
 })
 
 app.get('/hello', (req, res) => {
