@@ -17,6 +17,10 @@ app.get('/getobjects', async (req, res) => {
   res.send(rows)
 })
 
+app.get('/modifyobjects', async (req, res) => {
+  console.log(req.query.id)
+})
+
 app.get('/hello', (req, res) => {
   res.send('hello')
 })
