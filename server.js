@@ -1,6 +1,18 @@
 const express = require('express')
 const cors = require('cors')
 const db = require('./database')
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'videos')
+  },
+  filename: function(req, file, cb){
+    const parts = file.mimetype.split('/')
+    cb(null, `${file.fieldname}-${Date.now()}.${parts[1]}`)
+  }
+})
+const upload = multer({storage})
 
 const app = express()
 const port = 50000
@@ -21,6 +33,10 @@ app.get('/modifyobject', async (req, res) => {
   console.log(req.query.id)
   const dbRes = await db.updateObject(req.query.id, req.query.nom, req.query.local, req.query.localisation)
   res.send(dbRes)
+})
+
+app.post('/sendvideo', upload.single('video'), async (req, res) =>{
+  console.log('incoming request')
 })
 
 app.get('/hello', (req, res) => {
