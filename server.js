@@ -5,11 +5,7 @@ const db = require('./database')
 const app = express()
 const port = 50000
 
-const corsOptions = {
-  origin: "http://127.0.0.1:5173"
-}
-
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
