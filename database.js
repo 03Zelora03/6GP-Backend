@@ -38,8 +38,22 @@ async function getAllObjects(){
     }
 }
 
+async function updateObject(id, nom, local, localisation){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`UPDATE objets SET nom = '${nom}', local = '${local}', localisation = '${localisation}' WHERE objet = ${id}`);
+        return res
+    } catch (err) {
+        throw err;
+    } finally {
+        if (conn) conn.end();
+    }
+}
+
 module.exports = {
     testDatabase,
     getAllObjects,
+    updateObject,
 
 }
