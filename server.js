@@ -9,9 +9,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/test', async (req, res) => {
-  const rows = await db.testDatabase()
-  console.log("Rows: ", rows)
-  res.send(rows)
+  db.testDatabase().then(rows => {
+    console.log("Rows: ", rows)
+    res.send(rows)
+  })
 })
 
 app.get('/hello', (req, res) => {
