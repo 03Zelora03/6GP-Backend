@@ -30,7 +30,6 @@ async function getAllObjects(){
     try {
         conn = await pool.getConnection();
         const rows = await conn.query("SELECT * FROM objets");
-        console.log(rows);
         return rows
     } catch (err) {
         throw err;
