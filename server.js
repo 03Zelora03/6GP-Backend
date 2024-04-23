@@ -8,8 +8,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/test', async (req, res) => {
-  const rows = await db.testDatabase()
+app.get('/getobjects', async (req, res) => {
+  const rows = await db.getAllObjects()
   console.log("Rows: ", rows)
   res.send(rows)
 })

@@ -24,6 +24,22 @@ async function testDatabase(){
     }
 }
 
+async function getAllObjects(){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const rows = await conn.query("SELECT * FROM objets");
+        console.log(rows);
+        return rows
+    } catch (err) {
+        throw err;
+    } finally {
+        if (conn) conn.end();
+    }
+}
+
 module.exports = {
     testDatabase,
+    getAllObjects,
+    
 }
