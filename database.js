@@ -7,7 +7,7 @@ const pool = mariadb.createPool({
     connectionLimit: 5
 });
 
-function testDatabase(){
+async function testDatabase(){
     pool.getConnection()
     .then(conn => {
         conn.query("SELECT 1 as val")
