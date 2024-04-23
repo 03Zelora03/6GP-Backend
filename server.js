@@ -37,6 +37,7 @@ app.get('/modifyobject', async (req, res) => {
 
 app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   console.log('incoming request')
+  console.log(req.url)
   res.send("{status: OK}")
 })
 
