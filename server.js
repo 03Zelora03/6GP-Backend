@@ -17,7 +17,7 @@ app.get('/getobjects', async (req, res) => {
   res.send(rows)
 })
 
-app.get('/modifyobjects', async (req, res) => {
+app.get('/modifyobject', async (req, res) => {
   console.log(req.query.id)
   const dbRes = await db.updateObject(req.query.id, req.query.nom, req.query.local, req.query.localisation)
   res.send(dbRes)
