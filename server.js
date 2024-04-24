@@ -39,6 +39,7 @@ app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   console.log('incoming request')
   console.log(req.body['nom'])
   console.log(req.body['id'])
+  const dbRes = await db.addVideo(req.body['nom'], 1000, "md5iswearitstrue", req.file.filename, req.body['id'])
   res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente. Video: " + req.file.filename)
 })
 
