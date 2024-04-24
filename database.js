@@ -57,7 +57,13 @@ async function addVideo(nom, taille, md5, dirnom, objet){
         conn = await pool.getConnection();
         const res = await conn.query(`SELECT ordre FROM video_objets ORDER BY ordre DESC`);
         console.log(res)
-        //const nextOrder = res[0].ordre + 1
+        let nextOrder = 0
+        if(res[0].ordre){
+            nextOrder = res[0].ordre + 1
+        }  
+
+        //REST OF CODE HERE (i think you just need to uncomment)
+
         //const realRes = await conn.query(`INSERT INTO video_objets (nom, taille, md5, ordre, dirnom, objet) VALUES ('${nom}', ${taille}, '${md5}', ${nextOrder}, '${dirnom}', ${objet})`)
         //return realRes
         return ":3"
