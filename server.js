@@ -35,15 +35,9 @@ app.get('/modifyobject', async (req, res) => {
   res.send(dbRes)
 })
 
-app.post('/sendvideo', async (req, res) =>{
-  upload(req, res, (err) => {
-    if(err){
-      res.send("Une erreur est survenue. Veuillez réessayer plus tard.")
-    }
-    else{
-      res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente. Video: " + req.file.filename)
-    }
-  })
+app.post('/sendvideo', upload.single('video'), async (req, res) =>{
+  console.log('incoming request')
+  res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente. Video: " + req.file.filename)
 })
 
 app.get('/hello', (req, res) => {
