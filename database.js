@@ -51,6 +51,21 @@ async function updateObject(id, nom, local, localisation){
     }
 }
 
+async function addVideo(nom, taille, md5, dirnom, objet){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`SELECT ordre FROM video_objets ORDER BY ordre DESC`);
+        const nextOrder = res[0].ordre + 1
+        const realRes = await conn.query(`INSERT INTO video_objets (nom, taille, md5, ordre, dirnom, objet) VALUES (${nom}, ${taille}, ${md5}, ${nextOrder}, ${dirnom}, ${objet})`)
+        return realRes
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
+}
+
 module.exports = {
     testDatabase,
     getAllObjects,
