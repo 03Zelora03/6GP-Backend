@@ -1,4 +1,6 @@
 const mariadb = require('mariadb');
+const fs = require('fs');
+const { dirname } = require('path');
 
 const pool = mariadb.createPool({
     host: 'localhost',
@@ -87,6 +89,9 @@ async function deleteVideo(id){
     let conn;
     try {
         conn = await pool.getConnection();
+        const selectRes = await conn.query(`SELECT * FROM video_objets WHERE video = ${id}`);
+        const dirname = selectRes[0].dirnom
+        fs.unlink("video/" + dirname)
         const res = await conn.query(`DELETE FROM video_objets WHERE video = ${id}`);
         return res
     } catch (err) {
