@@ -47,6 +47,12 @@ app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente. Video: " + req.file.filename)
 })
 
+app.post('/deletevideo', async (req, res) => {
+  const id = req.body['id']
+  const dbRes = await db.deleteVideo(req.body['id'])
+  res.send("Vidéo supprimée avec succès! Vous pouvez retournez sur la page précédente.")
+})
+
 app.get('/hello', (req, res) => {
   res.send('hello')
 })

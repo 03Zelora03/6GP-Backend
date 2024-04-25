@@ -83,11 +83,25 @@ async function getVideos(id){
     }
 }
 
+async function deleteVideo(id){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`DELETE FROM video_objets WHERE video = ${id}`);
+        return res
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
+}
+
 module.exports = {
     testDatabase,
     getAllObjects,
     updateObject,
     addVideo,
     getVideos,
+    deleteVideo,
 
 }
