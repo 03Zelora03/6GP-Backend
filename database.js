@@ -60,12 +60,22 @@ async function addVideo(nom, taille, md5, dirnom, objet){
         let nextOrder = 0
         if(res[0]){
             nextOrder = res[0].ordre + 1
-        }  
-
-        //REST OF CODE HERE (i think you just need to uncomment)
-
+        }
         const realRes = await conn.query(`INSERT INTO video_objets (nom, taille, md5, ordre, dirnom, objet) VALUES ('${nom}', ${taille}, '${md5}', ${nextOrder}, '${dirnom}', ${objet})`)
         return realRes
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
+}
+
+async function getVideos(id){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`SELECT * FROM video_objets WHERE objet = ${id}`);
+        return res
     } catch (err) {
         throw err
     } finally {
@@ -78,5 +88,6 @@ module.exports = {
     getAllObjects,
     updateObject,
     addVideo,
+    getVideos,
 
 }

@@ -35,10 +35,13 @@ app.get('/modifyobject', async (req, res) => {
   res.send(dbRes)
 })
 
+app.get('/getvideos/:id', async (req, res) => {
+  const dbRes = await db.getVideos(req.query.id)
+  res.send(dbRes)
+})
+
 app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   console.log('incoming request')
-  console.log(req.body['nom'])
-  console.log(req.body['id'])
   const dbRes = await db.addVideo(req.body['nom'], 1000, "md5iswearitstrue", req.file.filename, req.body['id'])
   res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente. Video: " + req.file.filename)
 })
