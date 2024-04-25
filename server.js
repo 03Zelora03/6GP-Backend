@@ -37,6 +37,7 @@ app.get('/modifyobject', async (req, res) => {
 
 app.get('/getvideos/:id', async (req, res) => {
   const dbRes = await db.getVideos(req.params.id)
+  console.log(dbRes)
   res.send(dbRes)
 })
 
