@@ -64,9 +64,8 @@ async function addVideo(nom, taille, md5, dirnom, objet){
 
         //REST OF CODE HERE (i think you just need to uncomment)
 
-        //const realRes = await conn.query(`INSERT INTO video_objets (nom, taille, md5, ordre, dirnom, objet) VALUES ('${nom}', ${taille}, '${md5}', ${nextOrder}, '${dirnom}', ${objet})`)
-        //return realRes
-        return ":3"
+        const realRes = await conn.query(`INSERT INTO video_objets (nom, taille, md5, ordre, dirnom, objet) VALUES ('${nom}', ${taille}, '${md5}', ${nextOrder}, '${dirnom}', ${objet})`)
+        return realRes
     } catch (err) {
         throw err
     } finally {
