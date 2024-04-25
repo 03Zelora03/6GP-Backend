@@ -58,7 +58,7 @@ async function addVideo(nom, taille, md5, dirnom, objet){
         const res = await conn.query(`SELECT ordre FROM video_objets ORDER BY ordre DESC`);
         console.log(res)
         let nextOrder = 0
-        if(res[0].ordre){
+        if(res[0]){
             nextOrder = res[0].ordre + 1
         }  
 
