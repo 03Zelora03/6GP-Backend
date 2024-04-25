@@ -74,7 +74,7 @@ async function getVideos(id){
     let conn;
     try {
         conn = await pool.getConnection();
-        const res = await conn.query(`SELECT * FROM video_objets WHERE objet = ${id}`);
+        const res = await conn.query(`SELECT * FROM video_objets WHERE objet = ${id} ORDER BY ordre`);
         return res
     } catch (err) {
         throw err
