@@ -93,7 +93,6 @@ async function deleteVideo(id){
         const dirname = selectRes[0].dirnom
         fs.unlink("/home/admis/6GP-Backend/videos/" + dirname, (err) => {
             console.log(err)
-            throw err
         })
         const res = await conn.query(`DELETE FROM video_objets WHERE video = ${id}`);
         return res
