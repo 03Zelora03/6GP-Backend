@@ -91,7 +91,7 @@ async function deleteVideo(id){
         conn = await pool.getConnection();
         const selectRes = await conn.query(`SELECT * FROM video_objets WHERE video = ${id}`);
         const dirname = selectRes[0].dirnom
-        fs.unlink("video/" + dirname, (err) => {
+        fs.unlink(".video/" + dirname, (err) => {
             console.log(err)
             throw err
         })
