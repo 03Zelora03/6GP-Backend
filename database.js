@@ -106,6 +106,7 @@ async function deleteVideo(id){
 async function updateVideo(id, nom, ordre){
     let conn;
     try {
+        conn = await pool.getConnection();
         const res = await conn.query(`UPDATE video_objets SET nom = '${nom}', ordre = ${ordre} WHERE video = ${id}`);
         return res
     } catch (err) {
