@@ -103,6 +103,18 @@ async function deleteVideo(id){
     }
 }
 
+async function updateVideo(id, nom, ordre){
+    let conn;
+    try {
+        const res = await conn.query(`UPDATE video_objets SET nom = '${nom}', ordre = ${ordre} WHERE video = ${id}`);
+        return res
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
+}
+
 module.exports = {
     testDatabase,
     getAllObjects,
@@ -110,5 +122,6 @@ module.exports = {
     addVideo,
     getVideos,
     deleteVideo,
+    updateVideo,
 
 }

@@ -55,6 +55,11 @@ app.post('/deletevideo', async (req, res) => {
   res.send("Vidéo supprimée avec succès! Vous pouvez retournez sur la page précédente.")
 })
 
+app.post('/updatevideo', async (req, res) => {
+  const dbRes = await db.updateVideo(req.body['idvideo'], req.body['nom'], req.body['ordre'])
+  res.redirect('back')
+})
+
 app.get('/hello', (req, res) => {
   res.send('hello')
 })
