@@ -60,6 +60,11 @@ app.post('/updatevideo', async (req, res) => {
   res.redirect('back')
 })
 
+app.get('download/:filename', async (req, res) => {
+  const filepath = `/home/admis/6GP-Backend/videos/${req.params.filename}`
+  res.sendFile(filepath)
+})
+
 app.get('/hello', (req, res) => {
   res.send('hello')
 })
