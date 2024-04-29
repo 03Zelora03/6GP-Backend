@@ -42,6 +42,15 @@ app.get('/getvideos/:id', async (req, res) => {
   res.send(dbRes)
 })
 
+app.get('/videoinfo/:date/:video/:objet/:nb/:temps', async (req, res) => {
+  console.log(req.params.date)
+  console.log(req.params.video)
+  console.log(req.params.objet)
+  console.log(req.params.nb)
+  console.log(req.params.temps)
+  res.send("ÇA SENT LE CACA")
+})
+
 app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   console.log('incoming request')
   const dbRes = await db.addVideo(req.body['nom'], 1000, "md5iswearitstrue", req.file.filename, req.body['id'])
