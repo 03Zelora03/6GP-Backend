@@ -49,7 +49,7 @@ app.get('/getvideos/:id', async (req, res) => {
 
 app.post('/videoinfo', async (req, res) => {
   //const dbRes = await db.addVideoInfo(req.params.date, req.params.video, req.params.objet, req.params.nb, req.params.temps)
-  console.log(req.params.jsondata)
+  console.log(req.body)
   res.send("Info sent successfully!")
 })
 
