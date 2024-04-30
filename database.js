@@ -150,5 +150,6 @@ module.exports = {
     getVideos,
     deleteVideo,
     updateVideo,
+    addVideoInfo
 
 }

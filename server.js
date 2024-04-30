@@ -48,6 +48,7 @@ app.get('/videoinfo/:date/:video/:objet/:nb/:temps', async (req, res) => {
   console.log(req.params.objet)
   console.log(req.params.nb)
   console.log(req.params.temps)
+  const dbRes = await db.addVideoInfo(req.params.date, req.params.video, req.params.objet, req.params.nb, req.params.temps)
   res.send("ÇA SENT LE CACA")
 })
 
