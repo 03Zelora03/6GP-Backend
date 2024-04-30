@@ -120,21 +120,20 @@ async function addVideoInfo(date, video, objet, nb, jouer){
     let conn;
     try {
         conn = await pool.getConnection();
-        const infos = await conn.query(`SELECT * FROM videos_par_jour WHERE date_jour = ${date} AND id_video = ${video} AND id_objet = ${objet};`);
+        const infos = await conn.query(`SELECT * FROM videos_par_jour WHERE date_jour = '${date}' AND id_video = ${video} AND id_objet = ${objet};`);
         const res = infos
         let exist = false
         res.forEach((element) => {
             exist = true
         });
         if(exist){
-            const resDB = await conn.query(`UPDATE videos_par_jour SET nb_jouer = ${nb}, temps_jouer = ${jouer} WHERE date_jour = ${date} AND id_video = ${video} AND id_objet = ${objet};`);
+            const resDB = await conn.query(`UPDATE videos_par_jour SET nb_jouer = ${nb}, temps_jouer = ${jouer} WHERE date_jour = '${date}' AND id_video = ${video} AND id_objet = ${objet};`);
             return resDB
         }
         else{
-            const resDB = await conn.query(`INSERT INTO videos_par_jour (date_jour, id_video, id_objet, nb_jouer, temps_jouer) VALUES (${date}, ${video}, ${objet}, ${nb}, ${jouer})`);
+            const resDB = await conn.query(`INSERT INTO videos_par_jour (date_jour, id_video, id_objet, nb_jouer, temps_jouer) VALUES ('${date}', ${video}, ${objet}, ${nb}, ${jouer})`);
             return resDB
         }
-        return res
     } catch (err) {
         throw err
     } finally {
