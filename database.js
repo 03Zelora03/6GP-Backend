@@ -121,7 +121,7 @@ async function addVideoInfo(date, video, objet, nb, jouer){
     try {
         conn = await pool.getConnection();
         const infos = await conn.query(`SELECT * FROM videos_par_jour WHERE date_jour = ${date} AND id_video = ${video} AND id_objet = ${objet};`);
-        const res = await infos.json()
+        const res = infos
         let exist = false
         res.forEach((element) => {
             exist = true
