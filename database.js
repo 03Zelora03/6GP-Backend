@@ -141,12 +141,17 @@ async function addVideoInfo(date, video, objet, nb, jouer){
     }
 }
 
-async function getVideoInfo(idObjet, idVideo){
-    //Get the video associated with my object 
-
-    //Get all the stats of the video
-
-    //Send them
+async function getVideoInfo(idObjet){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`SELECT * FROM videos_par_jour WHERE date_jour = DATE_FORMAT(date_jour, '%Y-%m-%d') AND id_objet = ${objet};`);
+        return res
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
 }
 
 module.exports = {
@@ -157,6 +162,7 @@ module.exports = {
     getVideos,
     deleteVideo,
     updateVideo,
-    addVideoInfo
+    addVideoInfo,
+    getVideoInfo
 
 }

@@ -39,13 +39,7 @@ app.get('/getvideos/:id', async (req, res) => {
   res.send(dbRes)
 })
 
-// app.get('/videoinfo/:date/:video/:objet/:nb/:temps', async (req, res) => {
-//   const dbRes = await db.addVideoInfo(req.params.date, req.params.video, req.params.objet, req.params.nb, req.params.temps)
-//   res.send("Info sent successfully!")
-// })
-
 app.post('/videoinfo', async (req, res) => {
-  //const dbRes = await db.addVideoInfo(req.params.date, req.params.video, req.params.objet, req.params.nb, req.params.temps)
   console.log(req.body['videos'])
   req.body['videos'].forEach(async element => {
     const dbRes = await db.addVideoInfo(element.date_jour, element.video, req.body['objet'], element.nb, element.temps)
@@ -54,12 +48,9 @@ app.post('/videoinfo', async (req, res) => {
 })
 
 app.get('/getinfo/:idobjet/', async (req, res) => {
-  console.log('yipee')
   //Get the video associated with my object 
-
-  //Get all the stats of all the videos
-
-  //Send them
+  const dbRes = await db.getVideoInfo(req.params.idobjet)
+  res.send(dbRes)
 })
 
 app.post('/sendvideo', upload.single('video'), async (req, res) =>{
