@@ -26,19 +26,16 @@ app.get('/', (req, res) => {
 
 app.get('/getobjects', async (req, res) => {
   const rows = await db.getAllObjects()
-  console.log("Rows: ", rows)
   res.send(rows)
 })
 
 app.get('/modifyobject', async (req, res) => {
-  console.log(req.query.id)
   const dbRes = await db.updateObject(req.query.id, req.query.nom, req.query.local, req.query.localisation)
   res.send(dbRes)
 })
 
 app.get('/getvideos/:id', async (req, res) => {
   const dbRes = await db.getVideos(req.params.id)
-  console.log(dbRes)
   res.send(dbRes)
 })
 
