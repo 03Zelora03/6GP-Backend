@@ -46,9 +46,9 @@ app.get('/getvideos/:id', async (req, res) => {
 
 app.post('/videoinfo', async (req, res) => {
   //const dbRes = await db.addVideoInfo(req.params.date, req.params.video, req.params.objet, req.params.nb, req.params.temps)
-  console.log(req.body)
-  req.body.videos.array.forEach(async element => {
-    const dbRes = await db.addVideoInfo(element.date_jour, element.video, req.body.objet, element.nb, element.temps)
+  console.log(req.body['videos'])
+  req.body['videos'].array.forEach(async element => {
+    const dbRes = await db.addVideoInfo(element.date_jour, element.video, req.body['objet'], element.nb, element.temps)
   });
   res.send("Info sent successfully!")
 })
