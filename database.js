@@ -141,6 +141,14 @@ async function addVideoInfo(date, video, objet, nb, jouer){
     }
 }
 
+async function getVideoInfo(idObjet, idVideo){
+    //Get the video associated with my object 
+
+    //Get all the stats of the video
+
+    //Send them
+}
+
 module.exports = {
     testDatabase,
     getAllObjects,
