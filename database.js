@@ -145,7 +145,7 @@ async function getVideoInfo(idObjet){
     let conn;
     try {
         conn = await pool.getConnection();
-        const res = await conn.query(`SELECT * FROM videos_par_jour WHERE date_jour = DATE_FORMAT(date_jour, '%Y-%m-%d') AND id_objet = ${idObjet};`);
+        const res = await conn.query(`SELECT * FROM videos_par_jour WHERE date_jour = DATE_FORMAT(NOW(), '%Y-%m-%d') AND id_objet = ${idObjet};`);
         return res
     } catch (err) {
         throw err
