@@ -32,7 +32,7 @@ app.get('/getobjects', async (req, res) => {
 app.get('/modifyobject', async (req, res) => {
   const dbRes = await db.updateObject(req.query.id, req.query.nom, req.query.local, req.query.localisation)
   console.log(dbRes)
-  res.send(dbRes)
+  res.redirect('back')
 })
 
 app.get('/getvideos/:id', async (req, res) => {
