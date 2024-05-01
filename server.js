@@ -50,6 +50,7 @@ app.post('/videoinfo', async (req, res) => {
 app.get('/getinfo/:idobjet', async (req, res) => {
   //Get the video associated with my object 
   const dbRes = await db.getVideoInfo(req.params.idobjet)
+  console.log('test')
   res.send(dbRes)
 })
 
