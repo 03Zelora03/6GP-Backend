@@ -40,6 +40,7 @@ app.get('/getvideos/:id', async (req, res) => {
 })
 
 app.post('/videoinfo', async (req, res) => {
+  const db = await db.changeObjectStatus(req.body['objet'], req.body['is_display_ads'])
   console.log(req.body['videos'])
   req.body['videos'].forEach(async element => {
     const dbRes = await db.addVideoInfo(element.date_jour, element.video, req.body['objet'], element.nb, element.temps)
@@ -47,8 +48,12 @@ app.post('/videoinfo', async (req, res) => {
   res.send("Info sent successfully!")
 })
 
+app.get('/objetstatus/:id', async (req, res) => {
+  const db = await db.getObjectStatus(req.params.id)
+  res.send(db)
+})
+
 app.get('/getinfo/:idobjet', async (req, res) => {
-  //Get the video associated with my object 
   console.log(req.params.idobjet)
   const dbRes = await db.getVideoInfo(req.params.idobjet)
   res.send(dbRes)

@@ -40,7 +40,7 @@ async function getAllObjects(){
     }
 }
 
-async function updateObject(id, nom, local, localisation){
+async function updateObject(id, nom, local, localisation, isDisplaying){
     let conn;
     try {
         conn = await pool.getConnection();
@@ -154,6 +154,32 @@ async function getVideoInfo(idObjet){
     }
 }
 
+async function changeObjectStatus(idObjet, displaying){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`UPDATE objets SET displaying = '${displaying}' WHERE objet = ${idObjet}`);
+        return res
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
+}
+
+async function getObjectStatus(idObjet){
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const res = await conn.query(`SELECT displaying FROM objets WHERE objet = ${idObjet}`);
+        return res
+    } catch (err) {
+        throw err
+    } finally {
+        if (conn) conn.end()
+    }
+}
+
 module.exports = {
     testDatabase,
     getAllObjects,
@@ -163,6 +189,8 @@ module.exports = {
     deleteVideo,
     updateVideo,
     addVideoInfo,
-    getVideoInfo
+    getVideoInfo,
+    changeObjectStatus,
+    getObjectStatus
 
 }
