@@ -54,7 +54,6 @@ app.get('/objetstatus/:id', async (req, res) => {
 })
 
 app.get('/getinfo/:idobjet', async (req, res) => {
-  console.log(req.params.idobjet)
   const dbRes = await db.getVideoInfo(req.params.idobjet)
   res.send(dbRes)
 })
