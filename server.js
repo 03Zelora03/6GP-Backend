@@ -61,14 +61,14 @@ app.get('/getinfo/:idobjet', async (req, res) => {
 app.post('/sendvideo', upload.single('video'), async (req, res) =>{
   console.log('incoming request')
   const dbRes = await db.addVideo(req.body['nom'], 1000, "md5iswearitstrue", req.file.filename, req.body['id'])
-  res.send("Vidéo uploadée avec succès! Vous pouvez retournez sur la page précédente. Video: " + req.file.filename)
+  res.redirect('back')
 })
 
 app.post('/deletevideo', async (req, res) => {
   console.log(req.body)
   const id = req.body['idvideo']
   const dbRes = await db.deleteVideo(id)
-  res.send("Vidéo supprimée avec succès! Vous pouvez retournez sur la page précédente.")
+  res.redirect('back')
 })
 
 app.post('/updatevideo', async (req, res) => {
