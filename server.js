@@ -49,8 +49,8 @@ app.post('/videoinfo', async (req, res) => {
 })
 
 app.get('/objetstatus/:id', async (req, res) => {
-  const db = await db.getObjectStatus(req.params.id)
-  res.send(db)
+  const dbRes = await db.getObjectStatus(req.params.id)
+  res.send(dbRes)
 })
 
 app.get('/getinfo/:idobjet', async (req, res) => {
